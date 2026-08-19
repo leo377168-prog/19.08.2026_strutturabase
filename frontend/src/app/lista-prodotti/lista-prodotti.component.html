@@ -1,0 +1,20 @@
+
+<h2>Catalogo Prodotti</h2>
+
+@if (caricamento == true) {
+  <div style="font-style: italic; color: gray;">
+    Caricamento prodotti in corso...
+  </div>
+
+} @else {
+  <ul>
+    @for (p of prodotti; track p.id) {
+      <li>
+        <strong>{{ p.nome }}</strong> - Prezzo Netto: €{{ p.prezzo }} | 
+        <strong>Prezzo Ivato: €{{ p.prezzo_ivato }}</strong>
+      </li>
+    } @empty {
+      <li>Nessun prodotto presente a catalogo.</li>
+    }
+  </ul>
+}
