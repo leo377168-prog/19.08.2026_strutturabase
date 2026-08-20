@@ -12,4 +12,7 @@ export class ProdottoService {
   getProdotti(): Observable<ProdottoModel[]> {
     return this.http.get<ProdottoModel[]>(this.url + 'api/prodotti');
   }
+  getProdotto(prodotto_id: number): Observable<ProdottoModel> {
+    return this.http.get<ProdottoModel>(this.url + `api/prodotti/${prodotto_id}`);
+  }
 }

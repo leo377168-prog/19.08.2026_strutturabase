@@ -25,7 +25,7 @@ def get_prodotti():
         conn = get_db_connection()
         cursor = conn.cursor(dictionary=True)
 
-        query = "SELECT id, nome, prezzo, (prezzo * 1.22) AS prezzo_ivato FROM prodotti;"
+        query = "SELECT id, nome FROM prodotti;"
         cursor.execute(query)
         prodotti = cursor.fetchall()
         cursor.close()
@@ -37,5 +37,21 @@ def get_prodotti():
         return jsonify({"error": f"Unexpected error: {exc}"}), 500
   
 
+@app.route('/api/prodotti/<int:prodotto_id>', methods=['GET'])
+def get_prodotti(prodotto_id):
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        query = "SELECT id, nome, prezzo, (prezzo * 1.22) AS prezzo_ivato FROM prodotti WHERE id = %s;"
+        cursor.execute(query, (prodotto_id,))
+        prodotto = cursor.fetchone()
+        cursor.close()
+        conn.close()
+        if prodotto:
+            return jsonify(prodotto), 200
+        else:
+            return jsonify({"error": "Prodotto non trovato"}), 404
+    
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
