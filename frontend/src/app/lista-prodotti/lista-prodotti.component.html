@@ -13,7 +13,7 @@
         <strong>{{ p.nome }}</strong> - Prezzo Netto: €{{ p.prezzo }} | 
         <strong>Prezzo Ivato: €{{ p.prezzo_ivato }}</strong>
         <button (click)="aggiungiAlCarrello(p)">Aggiungi al Carrello</button>
-        <a [routerLink]="['/prodotto', p.id]">Dettagli</a>
+        <a> [routerLink]="['/prodotto', p.id]">Dettagli</a>
       </li>
     } @empty {
       <li>Nessun prodotto presente a catalogo.</li>

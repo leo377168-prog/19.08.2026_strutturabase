@@ -4,11 +4,12 @@ import { ProdottoService } from '../prodotto.service';
 import { OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CartServiceService } from '../cart-service.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-lista-prodotti-component',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './lista-prodotti.component.html',
   styleUrl: './lista-prodotti.component.css'
 })

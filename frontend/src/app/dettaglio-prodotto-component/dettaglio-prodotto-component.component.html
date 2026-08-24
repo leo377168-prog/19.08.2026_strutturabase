@@ -1,1 +1,14 @@
-<p>dettaglio-prodotto-component works!</p>
+@if (caricamento) {
+  <p>⏳ Caricamento dettaglio prodotto...</p>
+} @else if (prodotto) {
+  <h2>Dettaglio: {{ prodotto.nome }}</h2>
+  <p>ID Prodotto: {{ prodotto.id }}</p>
+  <p>Prezzo Base: {{ prodotto.prezzo }} €</p>
+  <p><strong>Prezzo Ivato (22%): {{ prodotto.prezzo_ivato }} €</strong></p>
+
+  <button (click)="aggiungiAlCarrello()">Aggiungi al Carrello</button>
+  <br><br>
+  <a> routerLink="/prodotti">← Torna alla Lista Prodotti</a>
+} @else {
+  <p>Prodotto non trovato!</p>
+}

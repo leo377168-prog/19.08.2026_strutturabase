@@ -7,7 +7,7 @@ app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": [
     "http://localhost:4200",
     "http://127.0.0.1:4200",
-    "https://curly-adventure-g47jjwpggx57cp4r9-4200.app.github.dev"
+    "https://glorious-train-vpg9q6r66qxvcjj6-4200.app.github.dev"
 ]}}, supports_credentials=True)
 
 def get_db_connection():
@@ -38,7 +38,7 @@ def get_prodotti():
   
 
 @app.route('/api/prodotti/<int:prodotto_id>', methods=['GET'])
-def get_prodotti(prodotto_id):
+def get_prodotto(prodotto_id):
     try:
         conn = get_db_connection()
         cursor = conn.cursor(dictionary=True)
@@ -52,6 +52,10 @@ def get_prodotti(prodotto_id):
             return jsonify(prodotto), 200
         else:
             return jsonify({"error": "Prodotto non trovato"}), 404
+    except mysql.connector.Error as exc:
+        return jsonify({"error": f"Database error: {exc}"}), 500
+    except Exception as exc:
+        return jsonify({"error": f"Unexpected error: {exc}"}), 500
     
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
