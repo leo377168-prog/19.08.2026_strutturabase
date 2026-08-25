@@ -1,6 +1,6 @@
 
 <h2>Catalogo Prodotti</h2>
-
+<a routerLink = '/carrello'>Carrello</a>
 @if (caricamento == true) {
   <div style="font-style: italic; color: gray;">
     Caricamento prodotti in corso...
@@ -13,7 +13,7 @@
         <strong>{{ p.nome }}</strong> - Prezzo Netto: €{{ p.prezzo }} | 
         <strong>Prezzo Ivato: €{{ p.prezzo_ivato }}</strong>
         <button (click)="aggiungiAlCarrello(p)">Aggiungi al Carrello</button>
-        <a> [routerLink]="['/prodotto', p.id]">Dettagli</a>
+        <a [routerLink]="['/dettaglio', p.id]">Dettagli</a>
       </li>
     } @empty {
       <li>Nessun prodotto presente a catalogo.</li>

@@ -1,1 +1,17 @@
-<p>carrello-component works!</p>
+<h2>Il tuo Carrello</h2>
+<a routerLink="/">← Continua lo Shopping</a>
+
+<ul>
+  @for (item of items; track $index) {
+    <li>
+      <strong>{{ item.nome }}</strong> - Prezzo Ivato: {{ item.prezzo_ivato }} €
+    </li>
+  } @empty {
+    <li>Il carrello è vuoto.</li>
+  }
+</ul>
+
+@if (items.length > 0) {
+  <h3>Totale Ivato: {{ totale }} €</h3>
+  <button (click)="svuota()">Svuota Carrello</button>
+}
