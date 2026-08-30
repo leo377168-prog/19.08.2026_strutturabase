@@ -25,7 +25,7 @@ def get_prodotti():
         conn = get_db_connection()
         cursor = conn.cursor(dictionary=True)
 
-        query = "SELECT id, nome FROM prodotti;"
+        query = "SELECT id, nome, prezzo, (prezzo * 1.22) AS prezzo_ivato FROM prodotti;"
         cursor.execute(query)
         prodotti = cursor.fetchall()
         cursor.close()

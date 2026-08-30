@@ -38,4 +38,3 @@ export class ListaProdottiComponent implements OnInit {
     this.cartService.addToCart(prodotto);
   }
 }
-  
